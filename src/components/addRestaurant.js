@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
-import pic from '../images/logo.png';
+import pic from '../images/continental.png';
 import { addDoc} from 'firebase/firestore';
 import { db,storage } from '../config/firebase';
 import {useHistory} from 'react-router-dom';
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize:50
     },
     navigation:{
-        backgroundColor:'#2B2C34',
+        backgroundColor:'#95e349',
         alignItems:'center',
         color:'white'
     },
@@ -45,13 +45,13 @@ const useStyles = makeStyles((theme) => ({
     second:{
         flexGrow: 1,
         fontSize:30,
-        marginTop:10,
+        marginTop:-15,
         color:"#2B2C34"
     },
     logo:{
         width:200,
         height:200,
-        marginTop:-120
+        marginTop:-65
     }
  
   }));
@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
     const [description,setDescription] = useState('')
     const [size,setSize] = useState('')
     const [category,setCategory] = useState('')
+    const [order,setOrderNumber] = useState('')
     const history = useHistory()
     const [menu,setMenu] = useState({})
 
@@ -109,6 +110,7 @@ const useStyles = makeStyles((theme) => ({
                     description:description,
                     category:category,
                     size:size,
+                    order:order,
                     image: url
                     
                 };
@@ -142,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
     return(
         <div style={{width:'100%'}}>
             <div className={classes.root}>
-                <AppBar position="static" style={{ height: 200, backgroundColor: '#E85800', width: '100%', justifyContent: "center" }}>
+                <AppBar position="static" style={{ height: 200, backgroundColor: 'black', width: '100%', justifyContent: "center" }}>
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
                             Add Food 
@@ -153,23 +155,24 @@ const useStyles = makeStyles((theme) => ({
             </div>
             <div className={classes.navigation} style={{ width: "20%", height: "770px" }}>
            <Link to='/Admin' style={{textDecoration:'none',color:'white'}}><Button style={{marginTop:'50%'}} color="inherit">Food Manu</Button></Link><br></br><br></br>
-            <Link to='/' style={{textDecoration:'none',color:'white'}}><Button color="inherit">Add Food</Button></Link><br></br><br></br>
+            <Link to='/addRestaurant' style={{textDecoration:'none',color:'white'}}><Button color="inherit">Add Food</Button></Link><br></br><br></br>
             <Link to='/edit' style={{textDecoration:'none',color:'white'}}><Button color="inherit">Edit Menu</Button></Link><br></br><br></br>
             
             </div>
-            <div className={classes.aside} style={{width:'80%',marginLeft:"20%",marginTop:'-600px',}}>
+            <div className={classes.aside} style={{width:'80%',marginLeft:"20%",marginTop:'-700px',}}>
                 <img src={pic} className={classes.logo}/>
                 <Typography variant="h6" className={classes.second}>
-                    Add Food To Manu
+                    Add Food To Menu
                 </Typography>
-            <TextField id="standard-basic" label="Food Name" onChange={(e)=> setFoodName(e.target.value)} style={{marginTop:"1%",width:'40%',color:"white"}} /><br></br>
+            <TextField id="standard-basic" label="Food Name" onChange={(e)=> setFoodName(e.target.value)} style={{marginTop:"-1%",width:'40%',color:"white"}} /><br></br>
             <TextField id="standard-basic" label="Price" onChange={(e)=> setPrice(e.target.value)} style={{marginTop:"1%",width:'40%',color:"white"}} /><br></br>
             <TextField id="standard-basic" label="Quantity" onChange={(e)=> setQuantity(e.target.value)} style={{marginTop:"1%",width:'40%',color:"white"}}/><br></br>
             <TextField id="standard-basic" label="Description" onChange={(e)=> setDescription(e.target.value)} style={{marginTop:"1%",width:'40%',color:"white"}}/><br></br>
             <TextField id="standard-basic" label="Category" onChange={(e)=> setCategory(e.target.value)} style={{marginTop:"1%",width:'40%',color:"white"}}/><br></br>
             <TextField id="standard-basic" label="Size" onChange={(e)=> setSize(e.target.value)} style={{marginTop:"1%",width:'40%',color:"white"}}/><br></br>
+            <TextField id="standard-basic" label="Order Number" onChange={(e)=> setOrderNumber(e.target.value)} style={{marginTop:"1%",width:'40%',color:"white"}}/><br></br>
             <input type='file'accept='image' onChange={(e)=>{handleImage(e)}} style={{marginTop:'2%',alignItems:"end"}} /><br></br>
-            <Button variant="contained" style={{backgroundColor:'#E85800', marginTop:'15px'}} onClick={(e)=>{addFood()}}> Add To Menu</Button>
+            <Button variant="contained" style={{backgroundColor:'#95e349', marginTop:'15px'}} onClick={(e)=>{addFood()}}> Add To Menu</Button>
             </div>
         </div>
 
